@@ -1,0 +1,55 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  template_heading = style.add_style(b: true, sz: 16, alignment: {:horizontal => :center, :vertical => :center})
+  data_heading = style.add_style(b: true, sz: 11,:border => { :style => :thin, :color => "00" }, bg_color: "FFFFCC", alignment: {:vertical => :center, :wrap_text => true})
+  data = style.add_style(sz: 11,:border => {:style => :thin, :color => "00" }, alignment: {:vertical => :center, :wrap_text => true})
+  
+  right_thin_border =  style.add_style({:border => { :style => :thin, :color => '00', :name => :right, :edges => [:right] }})
+
+  wb.add_worksheet(name: "item1") do |sheet|
+    # Add a title row
+    sheet.add_row ["Items"], style: template_heading
+
+    # Add a blank row
+    sheet.add_row []
+
+    # Merge cells
+    sheet.merge_cells("A1:I1")
+    sheet.merge_cells("B3:C3")
+    sheet.merge_cells("E3:F3")
+    sheet.merge_cells("H3:I3")
+    sheet.merge_cells("B4:C4")
+    sheet.merge_cells("E4:F4")
+    sheet.merge_cells("B5:C5")
+    sheet.merge_cells("B6:C6")
+    sheet.merge_cells("A7:A8")
+    sheet.merge_cells("B7:I8")
+    sheet.merge_cells("B9:D9")
+    sheet.merge_cells("B10:D10")
+    sheet.merge_cells("B11:D11")
+    sheet.merge_cells("E10:E11")
+    sheet.merge_cells("F9:F18")
+    sheet.merge_cells("G9:I18")
+
+    # Create row
+    sheet.add_row ["Brand Name", nil, nil, "Price", nil, nil, "Quantity", nil, nil], style: [data_heading, data, data, data_heading, data, data, data_heading, data, data]
+    sheet.add_row ["Model", nil, nil, "Colour", nil, nil, nil, nil, nil], style: [data_heading, data, data, data_heading, data, data, nil, nil, right_thin_border]
+    sheet.add_row ["Company Name", nil, nil, nil, nil, nil, nil, nil, nil], style: [data_heading, data, data, nil, nil, nil, nil, nil, right_thin_border]
+    sheet.add_row ["Made in", nil, nil, nil, nil, nil, nil, nil, nil], style: [data_heading, data, data, nil, nil, nil, nil, nil, right_thin_border]
+    sheet.add_row ["Other Specifications", nil, nil, nil, nil, nil, nil, nil, nil], style: [data_heading, data, data, data, data, data, data, data, data]
+    sheet.add_row [nil, nil, nil, nil, nil, nil, nil, nil, nil], style: [data, nil, nil, nil, nil, nil, nil, nil, right_thin_border]
+    sheet.add_row ["Customer Name", nil, nil, nil, "Age", "Image", nil, nil, nil], style: [data_heading, data, data, data, data_heading,data_heading, data, data, data]
+    sheet.add_row ["Email", nil, nil, nil, nil,nil, nil, nil,nil], style: [data_heading, data, data, data, data, data, nil, nil, right_thin_border]
+    sheet.add_row ["Phone Number", nil, nil, nil, nil, nil, nil, nil,nil], style: [data_heading, data, data, data, data, data, nil, nil, right_thin_border]
+    sheet.add_row [nil, nil, nil, nil, nil, nil, nil, nil, nil], style: [nil, nil, nil, nil, nil, data, nil, nil, right_thin_border]
+    sheet.add_row [nil, nil, nil, nil, nil, nil, nil, nil, nil], style: [nil, nil, nil, nil, nil, data, nil, nil, right_thin_border]
+    sheet.add_row [nil, nil, nil, nil, nil, nil, nil, nil, nil], style: [nil, nil, nil, nil, nil, data, nil, nil, right_thin_border]
+    sheet.add_row [nil, nil, nil, nil, nil, nil, nil, nil, nil], style: [nil, nil, nil, nil, nil, data, nil, nil, right_thin_border]
+    sheet.add_row [nil, nil, nil, nil, nil, nil, nil, nil, nil], style: [nil, nil, nil, nil, nil, data, nil, nil, right_thin_border]
+    sheet.add_row [nil, nil, nil, nil, nil, nil, nil, nil, nil], style: [nil, nil, nil, nil, nil, data, nil, nil, right_thin_border]
+    sheet.add_row [nil, nil, nil, nil, nil, nil, nil, nil, nil], style: [nil, nil, nil, nil, nil, data, data, data, data]
+
+    sheet.column_widths 24, 12, 12, 12, 12, 12, 12 , 10, 10
+  end
+end

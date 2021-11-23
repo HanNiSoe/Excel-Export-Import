@@ -1,0 +1,62 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  template_heading = style.add_style(b: true, sz: 16, alignment: {:horizontal => :center, :vertical => :center})
+  data_heading = style.add_style(b: true, sz: 11,:border => { :style => :thin, :color => "00" }, bg_color: "FFFFCC", alignment: {:horizontal => :center, :vertical => :center, :wrap_text => true})
+  data = style.add_style(sz: 11,:border => {:style => :thin, :color => "00" }, alignment: {:vertical => :center, :wrap_text => true})
+  
+  right_thin_border =  style.add_style({:border => { :style => :thin, :color => '00', :name => :right, :edges => [:right] }})
+
+  wb.add_worksheet(name: "item1") do |sheet|
+    # Add a title row
+    sheet.add_row ["スキルシート(見本)"], style: template_heading
+
+    # Merge cells
+    sheet.merge_cells("A1:H1")
+    sheet.merge_cells("B2:D2")
+    sheet.merge_cells("G2:H2")
+    sheet.merge_cells("B3:D3")
+    sheet.merge_cells("G3:H9")
+    sheet.merge_cells("B4:C4")
+    sheet.merge_cells("E4:F4")
+    sheet.merge_cells("B5:F5")
+    sheet.merge_cells("A6:A9")
+    sheet.merge_cells("B6:C6")
+    sheet.merge_cells("D6:F6")
+    sheet.merge_cells("B7:C7")
+    sheet.merge_cells("D7:F7")
+    sheet.merge_cells("B8:C8")
+    sheet.merge_cells("D8:F8")
+    sheet.merge_cells("B9:C9")
+    sheet.merge_cells("D9:F9")
+    sheet.merge_cells("A10:A11")
+    sheet.merge_cells("C10:D10")
+    sheet.merge_cells("F10:H10")
+    sheet.merge_cells("C11:D11")
+    sheet.merge_cells("F11:H11")
+    sheet.merge_cells("D12:E12")
+    sheet.merge_cells("G12:H12")
+    sheet.merge_cells("A13:A14")
+    sheet.merge_cells("B13:H14")
+    sheet.merge_cells("A15:A16")
+    sheet.merge_cells("B15:H15")
+    sheet.merge_cells("B16:C16")
+    sheet.merge_cells("B17:H17")
+    sheet.merge_cells("B18:H18")
+    sheet.merge_cells("B19:H19")
+    sheet.merge_cells("C20:D20")
+    sheet.merge_cells("E20:F20")
+    sheet.merge_cells("G20:H20")
+    sheet.merge_cells("A21:A23")
+    sheet.merge_cells("B21:H23")
+    sheet.merge_cells("A24:A26")
+    sheet.merge_cells("B24:H26")
+    sheet.merge_cells("A27:A29")
+    sheet.merge_cells("B27:H29")
+
+    # Create row
+    sheet.add_row ["カタカナ", nil, nil, nil, "年齢", "性別", "写真", nil], style: [data_heading, data, data, data, data_heading, data_heading, data_heading, data]
+
+    sheet.column_widths 20, 10, 10, 10, 10, 10, 10 , 10
+  end
+end

@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Items</h1>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Brand</th>
+        <th>Country</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Customer Name</th>
+        <th>Email</th>
+        <th>Phone number</th>
+        <th>Photo</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.brand %></td>
+          <td><%= item.country %></td>
+          <td><%= item.price %></td>
+          <td><%= item.quantity %></td>
+          <td><%= "#{item.customer.first_name}  #{item.customer.last_name}" %></td>
+          <td><%= item.customer.email %></td>
+          <td><%= item.customer.ph_num %></td>
+          <td><%= image_tag item.customer.image , style: 'height:100px; width:auto;' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <%= link_to 'Download Excel Template', items_path(format: :xlsx),:class => "btn btn btn-info text-white" %>
+  <h4 class="my-3">Import Items</h4> 
+  <%= form_with url: import_items_path, local: true do |form| %>
+    <%= form.file_field :file %>
+    <%= form.submit "Import", :class => "btn btn-success text-white" %>
+  <% end %>
+  <%# link_to 'New Item', new_item_path %>
+</div>
